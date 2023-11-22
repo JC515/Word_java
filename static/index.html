@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词表格</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        #app {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .word-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff; /* 添加背景色 */
+            border-radius: 10px; /* 添加圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+        }
+
+        .word-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .word-card p {
+            margin: 5px 0;
+        }
+
+        .word-buttons button {
+            margin: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* 添加过渡效果 */
+        }
+
+        .word-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .loading-message {
+            font-style: italic;
+            margin-top: 20px; /* 调整加载文本的上边距 */
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div id="app">
+    <div v-if="currentWord" class="word-container">
+        <div class="word-card">
+            <p>{{ currentWord.word }}</p>
+            <p>{{ currentWord.pronunciation }}</p>
+            <p>{{ currentWord.definition }}</p>
+        </div>
+        <div class="word-buttons">
+            <button @click="prevWord">上一个单词</button>
+            <button @click="nextWord">下一个单词</button>
+        </div>
+    </div>
+    <div v-else class="loading-message">
+        数据加载中...
+    </div>
+</div>
+
+
+<style>
+    .word-container {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .word-card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+    }
+
+    .word-buttons button {
+        margin: 0 10px;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            words: [],
+            currentIndex: 0
+        },
+        computed: {
+            currentWord() {
+                return this.words[this.currentIndex];
+            }
+        },
+        mounted() {
+            fetch('http://localhost:8080/word')
+                .then(response => response.json())
+                .then(data => {
+                    this.words = data.data;
+                })
+                .catch(error => console.error('Error:', error));
+        },
+        methods: {
+            nextWord() {
+                if (this.currentIndex < this.words.length - 1) {
+                    this.currentIndex++;
+                }
+            },
+            prevWord() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左侧边栏导航</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            color: white;
+            height: 100vh; /* 让左侧栏铺满整个视口高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            text-align: center; /* 导航键居中 */
+            border: 1px solid white; /* 为导航键添加边框 */
+            cursor: pointer; /* 将鼠标光标设置为手型 */
+            transition: background-color 0.3s; /* 添加过渡效果 */
+        }
+
+        #sidebar a:active {
+            background-color: #d52727; /* 当按钮被点击时改变背景颜色 */
+        }
+
+        #sidebar-heading {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        #content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平居中 */
+            justify-content: center; /* 垂直居中 */
+        }
+
+        #buttons-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between; /* 左右按钮并排排列 */
+            width: 100%;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #121111;
+        }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <div id="sidebar-heading">词汇宇宙</div>
+    <a href="#back-words">背单词</a>
+    <a href="#word-book">单词本</a>
+</div>
+
+<div v-if="currentWord" id="content">
+    <div class="word-card">
+        <p>{{ currentWord.word }}</p>
+        <p>{{ currentWord.pronunciation }}</p>
+        <p>{{ currentWord.definition }}</p>
+    </div>
+    <div class="word-buttons">
+        <button @click="prevWord">上一个单词</button>
+        <button @click="nextWord">下一个单词</button>
+    </div>
+</div>
+<div v-else class="loading-message">
+    数据加载中...
+</div>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                words: [],
+                currentIndex: 0
+            };
+        },
+        methods: {
+            prevWord() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                }
+            },
+            nextWord() {
+                if (this.currentIndex < this.words.length - 1) {
+                    this.currentIndex++;
+                }
+            },
+            fetchData() {
+                fetch('http://localhost:8080/word')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.words = data;
+                    });
+            }
+        },
+        mounted() {
+            this.fetchData();
+        },
+        computed: {
+            currentWord() {
+                return this.words[this.currentIndex];
+            }
+        }
+    });
+
+    app.mount('#content');
+</script>
+
+
+</body>
+</html>

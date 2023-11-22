@@ -1,0 +1,91 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Vue.js + Element UI App</title>
+    <link rel="stylesheet" href="//unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #app {
+            text-align: center;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+
+        .element-input {
+            width: 300px;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="input-container">
+        <label class="input-label">账号</label>
+        <el-input v-model="input" class="element-input" placeholder="请输入内容"></el-input>
+    </div>
+    <div class="input-container">
+        <label class="input-label">密码</label>
+        <el-input v-model="password" class="element-input" placeholder="请输入密码" show-password></el-input>
+    </div>
+    <button class="submit-button" @click="submit">登录</button>
+</div>
+
+<script src="//unpkg.com/vue@2/dist/vue.js"></script>
+<script src="//unpkg.com/element-ui@2.15.14/lib/index.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                input: '',
+                password: ''
+            };
+        },
+        methods: {
+            submit() {
+                // 在这里处理登录逻辑，可以使用 Vue Resource 或其他 HTTP 库发送 POST 请求
+                console.log('账号:', this.input);
+                console.log('密码:', this.password);
+                // 你可以在这里发送 POST 请求
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
+-->
