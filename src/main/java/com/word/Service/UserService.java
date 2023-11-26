@@ -1,6 +1,6 @@
-package com.demo1.Service;
+package com.word.Service;
 
-import com.demo1.Pojo.User;
+import com.word.Pojo.User;
 
 
 public interface UserService {

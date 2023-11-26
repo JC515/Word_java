@@ -1,6 +1,6 @@
-package com.demo1.Mapper;
+package com.word.Mapper;
 
-import com.demo1.Pojo.Word;
+import com.word.Pojo.Word;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

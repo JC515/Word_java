@@ -1,4 +1,4 @@
-package com.demo1;
+package com.word;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,10 +1,10 @@
-package com.demo1.Service;
+package com.word.Service;
 
-import com.demo1.Pojo.Word;
+import com.word.Pojo.Word;
 
 import java.util.List;
 
 public interface WordService {
     List<Word> getWordToPage(Integer index, Integer size);
-    public List<Word> getWord();
+    List<Word> getWord();
 }

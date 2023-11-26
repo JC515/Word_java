@@ -1,8 +1,8 @@
-package com.demo1.Controller;
+package com.word.Controller;
 
-import com.demo1.Pojo.Response;
-import com.demo1.Pojo.Word;
-import com.demo1.Service.WordServiceImpl;
+import com.word.Pojo.Response;
+import com.word.Pojo.Word;
+import com.word.Service.WordServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

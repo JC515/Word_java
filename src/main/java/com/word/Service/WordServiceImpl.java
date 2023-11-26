@@ -1,7 +1,7 @@
-package com.demo1.Service;
+package com.word.Service;
 
-import com.demo1.Mapper.WordMapper;
-import com.demo1.Pojo.Word;
+import com.word.Mapper.WordMapper;
+import com.word.Pojo.Word;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;

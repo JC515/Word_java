@@ -1,7 +1,7 @@
-package com.demo1.Service;
+package com.word.Service;
 
-import com.demo1.Mapper.UserMapper;
-import com.demo1.Pojo.User;
+import com.word.Mapper.UserMapper;
+import com.word.Pojo.User;
 import org.springframework.stereotype.Service;
 
 @Service
