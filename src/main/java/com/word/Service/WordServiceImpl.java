@@ -1,7 +1,5 @@
 package com.word.Service;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.word.Mapper.WordMapper;
 import com.word.Pojo.Word;
 import com.word.Pojo.WordHistory;
@@ -20,13 +18,6 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> getWordToPage(Integer index, Integer size) {
-        PageHelper.startPage(index, size);
-        List<Word> wordList = wordMapper.list();
-        Page<Word> words = (Page<Word>) wordList;
-        return words.getResult();
-    }
-
     public List<Word> getWord() {
         return wordMapper.list();
     }
@@ -41,5 +32,10 @@ public class WordServiceImpl implements WordService {
         // 更新学习时间为系统当前时间
         history.setLearningDate(new Timestamp(new Date().getTime()));
         wordMapper.updateHistory(history);
+    }
+
+    @Override
+    public boolean setWordLearned(int wordId, int isLearned) {
+        return wordMapper.setWordLearned(wordId, isLearned);
     }
 }

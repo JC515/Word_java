@@ -12,4 +12,5 @@ public class Word {
     private String word;
     private String pronunciation;
     private String definition;
+    private String isLearned;
 }
